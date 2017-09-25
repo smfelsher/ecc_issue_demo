@@ -24,7 +24,3 @@ target_compile_options(hello_world
 target_link_libraries(hello_world
 	PRIVATE Print
 	)
-target_include_directories(hello_world
-	PUBLIC ../libPrint/include
-	)
-
