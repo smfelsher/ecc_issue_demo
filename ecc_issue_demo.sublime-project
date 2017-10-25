@@ -1,104 +1,18 @@
 {
-   "folders":
-   [
-      {
-         "name": "ECC Issue Demo",
-         "path": ".",
-         "folder_exclude_patterns":
-         [
-         ],
-         "file_exclude_patterns":
-         [
-         ],
-      },
-   ],
-   "settings":
+  "folders":
+  [
+    {
+      "path": "."
+    }
+  ],
+  "settings":
    {
-
-      // Create cscope.out in project directory for CScopeSublime to work. Makefile example follows:
-      // #------------------------------------------------------------------------------
-      // # Define rules to build a cscope file.
-      // #------------------------------------------------------------------------------
-      // .PHONY: cscope
-      // cscope:
-      //     @find .                   \
-      //       -path ./misc  -prune -o \
-      //       -name "*.c"   -print -o \
-      //       -name "*.h"   -print -o \
-      //       -name "*.cpp" -print -o \
-      //       -name "*.hpp" -print    \
-      //       > cscope.files
-      //     @/usr/bin/cscope -q -b
-
-      "ClangFormat":
-      {
-         "format_on_save": true,
-         "style": "File"   // Get settings from .clang-format file in project root.
-      },
-
-      "todoreview":
-      {
-         "exclude_folders":
-         [
-            ".git"
-         ],
-         "patterns":
-         {
-            // Create a custom SMF pattern, and add the Doxy @todo to the default.
-            "SMF-TODO": "@todo[\\s]*?[\\s]*SMF:(?P<smftodo>.*)$",
-            "TODO": "(TODO|@todo)[\\s]*:*[\\s]*(?P<todo>.*)$"
-         },
-      },
-   },
-   "build_systems":
-   [
-      // Build targets for the XXX architecture.
-      {
-         "working_dir": "$project_path",
-         "file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$",
-         "syntax" : "Packages/User/c++output.tmLanguage",
-
-         "name": "Make",
-         "shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host",
-
-         "variants":
-         [
-         	{
-         		"name": "clean",
- 		        	"shell_cmd": "cmake -E remove_directory build-host",
-         	},
-         	{
-         		"name": "libPrint",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target Print",
-         	},
-         	{
-         		"name": "hello_world",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target hello_world",
-         	},
-         	{
-         		"name": "hello_world clean",
- 		        	"shell_cmd": "cmake -E remove_directory build-host/hello_world",
-         	},
-         	{
-         		"name": "libPrint",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target Print",
-         	},
-         ]
-      },
-      {
-         "working_dir": "$project_path",
-         "file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$",
-         "syntax" : "Packages/User/c++output.tmLanguage",
-
-         "name": "Run",
-
-         "variants":
-         [
-         	{
-		         "name": "hello_world",
- 		        	"shell_cmd": "build-host/hello_world/hello_world",
- 		     	},
-         ]
-      },
-   ],
+    "ecc_flags_sources": [
+        // cmake entry
+        {
+          "file": "CMakeLists.txt",
+          "search_in": "$project_base_path",
+        },
+      ],
+   }
 }
