@@ -14,6 +14,14 @@
    ],
    "settings":
    {
+ 	 	"ecc_include_file_folder" : false,
+  		"ecc_include_file_parent_folder" : false,
+   	"ecc_common_flags":
+   	[
+   		"-I/usr/include",
+  	 		"-I/usr/lib/clang/$clang_version/include",
+  	 		"-I$project_path/libPrint/include"
+		],
 
       // Create cscope.out in project directory for CScopeSublime to work. Makefile example follows:
       // #------------------------------------------------------------------------------
@@ -50,6 +58,7 @@
          },
       },
    },
+
    "build_systems":
    [
       // Build targets for the XXX architecture.
@@ -59,29 +68,29 @@
          "syntax" : "Packages/User/c++output.tmLanguage",
 
          "name": "Make",
-         "shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host",
+         "shell_cmd": "cmake -E make_directory build && cmake -E chdir build cmake .. && cmake --build build",
 
          "variants":
          [
          	{
          		"name": "clean",
- 		        	"shell_cmd": "cmake -E remove_directory build-host",
+         		"shell_cmd": "cmake -E remove_directory build"
          	},
          	{
          		"name": "libPrint",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target Print",
+         		"shell_cmd": "cmake --build build --target Print"
+         	},
+         	{
+         		"name": "libPrint clean",
+         		"shell_cmd": "cmake -E remove_directory build/libPrint"
          	},
          	{
          		"name": "hello_world",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target hello_world",
+         		"shell_cmd": "cmake --build build --target hello_world"
          	},
          	{
          		"name": "hello_world clean",
- 		        	"shell_cmd": "cmake -E remove_directory build-host/hello_world",
-         	},
-         	{
-         		"name": "libPrint",
- 		        	"shell_cmd": "cmake -E make_directory build-host && cmake -E chdir build-host cmake .. && cmake -E time cmake --build build-host --target Print",
+         		"shell_cmd": "cmake -E remove_directory build/hello_world"
          	},
          ]
       },
@@ -91,13 +100,14 @@
          "syntax" : "Packages/User/c++output.tmLanguage",
 
          "name": "Run",
+         "shell_cmd": "echo Needs to be defined!",
 
          "variants":
          [
-         	{
-		         "name": "hello_world",
- 		        	"shell_cmd": "build-host/hello_world/hello_world",
- 		     	},
+         // 	{
+		       //   "name": "hello_world",
+ 		      //   	"shell_cmd": "build-host/hello_world/hello_world",
+ 		     	// },
          ]
       },
    ],
