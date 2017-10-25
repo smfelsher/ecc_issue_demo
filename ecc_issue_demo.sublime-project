@@ -1,26 +1,26 @@
 {
-   "folders":
-   [
-      {
-         "name": "ECC Issue Demo",
-         "path": ".",
-         "folder_exclude_patterns":
-         [
-         ],
-         "file_exclude_patterns":
-         [
-         ],
-      },
-   ],
-   "settings":
+  "folders":
+  [
+    {
+      "path": "."
+    }
+  ],
+  "settings":
    {
  	 	"ecc_include_file_folder" : false,
   		"ecc_include_file_parent_folder" : false,
+	   "ecc_flags_sources":
+	   [
+      	{
+   			"file": "CMakeLists.txt",
+         	"search_in": "$project_base_path",
+      	},
+      ],
+
    	"ecc_common_flags":
    	[
    		"-I/usr/include",
   	 		"-I/usr/lib/clang/$clang_version/include",
-  	 		"-I$project_path/libPrint/include"
 		],
 
       // Create cscope.out in project directory for CScopeSublime to work. Makefile example follows:
